@@ -4,9 +4,10 @@ NAME	:= phonebook
 
 CFALGS	:= -Wall -Wextra -Werror -std=c++98
 
-SRC		:= phonebook.cpp
+SRC		:=	phonebook.cpp \
+			Contact.cpp
 
-OBJ		:= $(SRC:%.c=%.o)
+OBJ		:= $(SRC:%.cpp=%.o)
 
 all: $(NAME)
 
