@@ -2,14 +2,19 @@ CC		:= c++
 
 NAME	:= phonebook
 
+
 CFALGS	:= -Wall -Wextra -Werror -std=c++98
 
-SRC		:=	phonebook.cpp \
+HEADERS	:= includes.hpp
+
+SRC		:=	main.cpp \
+			utils.cpp \
+			PhoneBook.cpp \
 			Contact.cpp
 
 OBJ		:= $(SRC:%.cpp=%.o)
 
-all: $(NAME)
+all: $(NAME) $(HEADERS)
 
 $(NAME): $(OBJ)
 	$(CC) $(OBJ) $(CFLAGS) -o $(NAME)

@@ -1,16 +1,16 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   phonebook.cpp                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/20 13:54:41 by anarama           #+#    #+#             */
-/*   Updated: 2024/09/20 13:54:53 by anarama          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include "PhoneBook.hpp"
+#include <iostream>
 
-int main(int argc, char **argv)
+void	PhoneBook::add_contact(int index)
 {
-	
+    std::cout << "Enter First Name: ";
+	std::cin >> contacts[index].first_name;
+    std::cout << "Enter Last Name: ";
+	std::cin >> contacts[index].last_name;
+    std::cout << "Enter Nickname: ";
+	std::cin >> contacts[index].nickname;
+    std::cout << "Enter Phone Number: ";
+	std::cin >> contacts[index].phone_number;
+    std::cout << "Enter Darkest Secret: ";
+	std::cin >> contacts[index].darkest_secret;
 }
