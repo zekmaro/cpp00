@@ -6,12 +6,12 @@
 class Contact
 {
 	private:
-		std::string	first_name;
-		std::string	last_name;
-		std::string	nickname;
-		std::string	phone_number;
-		std::string	darkest_secret;
-		bool 		is_empty;
+		std::string	_first_name;
+		std::string	_last_name;
+		std::string	_nickname;
+		std::string	_phone_number;
+		std::string	_darkest_secret;
+		bool 		_is_empty;
 
 	public:
 		std::string get_last_name() const;

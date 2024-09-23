@@ -6,7 +6,7 @@ CFALGS	:= -Wall -Wextra -Werror -std=c++98
 
 SRC		:= megaphone.cpp
 
-OBJ		:= $(SRC:%.c=%.o)
+OBJ		:= $(SRC:%.cpp=%.o)
 
 all: $(NAME)
 
