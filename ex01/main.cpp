@@ -16,7 +16,6 @@ int main(int argc, char **argv)
 {
 	PhoneBook phone_book;
 
-	init_phone_book(&phone_book);
-	handle_main_loop(&phone_book);
+	handle_main_loop(phone_book);
 	return (0);
 }

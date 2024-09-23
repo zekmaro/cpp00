@@ -4,7 +4,9 @@ NAME	:= phonebook
 
 CFALGS	:= -Wall -Wextra -Werror -std=c++98
 
-HEADERS	:= includes.hpp
+HEADERS	:=	includes.hpp \
+			Contact.hpp \
+			PhoneBook.hpp \
 
 OBJDIR	:= obj
 
@@ -17,9 +19,9 @@ OBJ		:= $(SRC:%.cpp=$(OBJDIR)/%.o)
 
 $(shell mkdir -p $(OBJDIR))
 
-all: $(NAME) $(HEADERS)
+all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) $(HEADERS)
 	$(CC) $(OBJ) $(CFLAGS) -o $(NAME)
 
 clean:

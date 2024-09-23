@@ -5,10 +5,16 @@
 
 class PhoneBook
 {
-	public:
+	private:
 		Contact	contacts[8];
-	
-	void	add_contact(int index);
+		int		index;
+	public:
+
+		Contact get_contact(int index) const;
+		void	add_contact(int index);
+		void	search();
+		void	set_index(int value);
+		int		get_index() const;
 };
 
 #endif //PHONEBOOK_HPP

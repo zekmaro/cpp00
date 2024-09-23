@@ -1,7 +1,11 @@
-#include <iostream>
-#include <string>
-#include "Contact.hpp"
-#include "PhoneBook.hpp"
+#ifndef EX01_HPP
+# define EX01_HPP
 
-void	init_phone_book(PhoneBook *phone_book);
-void	handle_main_loop(PhoneBook *phone_book);
+# include <iostream>
+# include <string>
+# include "Contact.hpp"
+# include "PhoneBook.hpp"
+
+void	handle_main_loop(PhoneBook phone_book);
+
+#endif //EX01_HPP
