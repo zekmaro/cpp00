@@ -4,11 +4,11 @@ NAME	:= phonebook
 
 CFALGS	:= -Wall -Wextra -Werror -std=c++98
 
+OBJDIR	:= obj
+
 HEADERS	:=	includes.hpp \
 			Contact.hpp \
 			PhoneBook.hpp \
-
-OBJDIR	:= obj
 
 SRC		:=	main.cpp \
 			utils.cpp \

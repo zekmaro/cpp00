@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Contact.hpp"
 #include "PhoneBook.hpp"
 #include "includes.hpp"
 #include <string>
+#include <iostream>
 
 void	handle_main_loop(PhoneBook phone_book)
 {
