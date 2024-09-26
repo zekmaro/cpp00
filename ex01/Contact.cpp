@@ -27,9 +27,9 @@ std::string Contact::get_darkest_secret(void) const
 	return (this->_darkest_secret);
 }
 
-bool Contact::get_is_empty(void) const
+bool Contact::get_is_full(void) const
 {
-	return (this->_is_empty);
+	return (this->_is_full);
 }
 
 void Contact::set_first_name(std::string first_name)
@@ -57,21 +57,25 @@ void Contact::set_darkest_secret(std::string darkest_secret)
 	this->_darkest_secret = darkest_secret;
 }
 
-void Contact::set_is_empty(bool state)
+void Contact::set_is_full(bool state)
 {
-	this->_is_empty = state;
+	this->_is_full = state;
 }
 
 void Contact::display_contact_full(void) {
+	std::cout << "------------" << std::endl;
     std::cout << "First Name: " << get_first_name() << std::endl;
     std::cout << "Last Name: " << get_last_name() << std::endl;
     std::cout << "Nickname: " << get_nickname() << std::endl;
     std::cout << "Phone Number: " << get_phone_number() << std::endl;
     std::cout << "Darkest Secret: " << get_darkest_secret() << std::endl;
+	std::cout << "------------" << std::endl;
 }
 
 void Contact::display_contact_short(void) {
+	std::cout << "------------" << std::endl;
     std::cout << "First Name: " << get_first_name() << std::endl;
     std::cout << "Last Name: " << get_last_name() << std::endl;
     std::cout << "Nickname: " << get_nickname() << std::endl;
+	std::cout << "------------" << std::endl;
 }

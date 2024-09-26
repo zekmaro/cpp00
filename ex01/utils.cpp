@@ -17,24 +17,32 @@
 
 void	handle_main_loop(PhoneBook phone_book)
 {
-	std::string command;
-	int	index;
+	std::string	command;
+	int			next_index;
 
-	phone_book.set_index(0);
-	while (command != "EXIT")
+	phone_book.set_next_index(0);
+	while (true)
 	{
-		std::cout << "Enter command: ";
-		std::getline(std::cin, command);
-		if (command == "ADD")
-		{
-			index = phone_book.get_index();
-			phone_book.add_contact(index % 8);
-			phone_book.set_index((index + 1) % 8);
-			std::cout << "New Contact Added!" << std::endl;
+		if (!std::cin.eof())
+			std::cout << "Enter command (ADD/SEARCH/EXIT): ";
+		if (!std::getline(std::cin, command) || std::cin.eof()) {
+			std::cout << "\nToo bad :( You pressed CTRL-D. Bye!" << std::endl;
+			break ;
 		}
-		else if (command == "SEARCH")
-		{
+		if (command == "EXIT") {
+			std::cout << "Exiting program!" << std::endl;
+			break ;
+		}
+		else if (command == "ADD") {
+			next_index = phone_book.get_next_index();
+			phone_book.add_contact(next_index % 8);
+			phone_book.set_next_index((next_index + 1) % 8);
+		}
+		else if (command == "SEARCH") {
 			phone_book.search();
+		}
+		else {
+			std::cout << "Incorrect command!" << std::endl;
 		}
 	}
 }
