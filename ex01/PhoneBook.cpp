@@ -1,7 +1,21 @@
-#include "PhoneBook.hpp"
-#include <cctype>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/27 17:35:21 by anarama           #+#    #+#             */
+/*   Updated: 2024/09/27 17:38:04 by anarama          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
 #include <string>
+
+#include "PhoneBook.hpp"
+#include "Contact.hpp"
+#include "includes.hpp"
 
 Contact PhoneBook::get_contact(int index) const
 {
@@ -22,15 +36,15 @@ void	PhoneBook::search()
 {
 	int index_to_search = 0;
 
-	if (this->_contacts[0].get_is_full() == false)
+	if (this->_contacts[0].getIsFull() == false)
 	{
 		std::cout << "Too bad. Nothing to search for. Phone book is empty" << std::endl;
 		return ;
 	}
 	for (int i = 0; i < 8; i++)
 	{
-		if (this->_contacts[i].get_is_full() == true)
-			this->_contacts[i].display_contact_short();
+		if (this->_contacts[i].getIsFull() == true)
+			this->_contacts[i].displayContactShort();
 	}
 	std::cout << "Enter Index Of The Entry To Display: ";
 	std::cin >> index_to_search;
@@ -40,7 +54,7 @@ void	PhoneBook::search()
 		std::cout << "Enter Index Of The Entry To Display: ";
 		std::cin >> index_to_search;
 	}
-	this->_contacts[index_to_search].display_contact_full();
+	this->_contacts[index_to_search].displayContactFull();
 }
 
 bool	is_valid_phone_number(std::string number)
@@ -53,44 +67,63 @@ bool	is_valid_phone_number(std::string number)
 	return true;
 }
 
+bool	get_variable(std::string &var, std::string display_message,
+				std::string error_message)
+{
+	std::cout << display_message;
+	if (!std::getline(std::cin, var)) {
+		std::cout << "Get line failed in get_variable!" << std::endl;
+        return false;
+	}
+	else if (std::cin.eof()) {
+		std::cout << "Input stream was ended with CTRL-D in get_variable" << std::endl;
+		return false;
+	}
+	while (var.empty())
+	{
+		std::cout << error_message << std::endl;
+		std::cout << display_message;
+		if (!std::getline(std::cin, var)) {
+			std::cout << "Get line failed in get_variable!" << std::endl;
+			return false;
+		}
+		else if (std::cin.eof()) {
+			std::cout << "Input stream was ended with CTRL-D in get_variable" << std::endl;
+			return false;
+		}
+	}
+	return true;
+}
+
 void	PhoneBook::add_contact(int index)
 {
-	std::string temp_str;
+	std::string first_name;
+	std::string last_name;
+	std::string nickname;
+	std::string phone_number;
+	std::string darkest_secret;
 
-    std::cout << "Enter First Name: ";
-	if (!std::getline(std::cin, temp_str) || std::cin.eof())
-        return;
-	while (temp_str.empty())
-	{
-		std::cout << "Too bad :_). No empty strings allowed" << std::endl;
-		std::cout << "Enter First Name: ";
-		if (!std::getline(std::cin, temp_str) || std::cin.eof())
-			return;
+	if (!get_variable(first_name, "Enter First Name: ", ERROR_EMPTY_STRING)) {
+		return ;
 	}
-	this->_contacts[index].set_first_name(temp_str);
-    std::cout << "Enter Last Name: ";
-	if (!std::getline(std::cin, temp_str) || std::cin.eof())
-        return;
-	this->_contacts[index].set_last_name(temp_str);
-    std::cout << "Enter Nickname: ";
-	if (!std::getline(std::cin, temp_str) || std::cin.eof())
-        return;
-	this->_contacts[index].set_nickname(temp_str);
-    std::cout << "Enter Phone Number: ";
-	if (!std::getline(std::cin, temp_str) || std::cin.eof())
-        return;
-	while (is_valid_phone_number(temp_str) == false)
-	{
-		std::cout << "TOO BAD! Wrong number! Try again. (Only digits are allowed)" << std::endl;
-		std::cout << "Enter Phone Number: ";
-		if (!std::getline(std::cin, temp_str) || std::cin.eof())
-			return;
+	if (!get_variable(last_name, "Enter Last Name: ", ERROR_EMPTY_STRING)) {
+		return ;
 	}
-	this->_contacts[index].set_phone_number(temp_str);
-    std::cout << "Enter Darkest Secret: ";
-	if (!std::getline(std::cin, temp_str) || std::cin.eof())
-        return;
-	this->_contacts[index].set_darkest_secret(temp_str);
-	this->_contacts[index].set_is_full(true);
-	std::cout << "New Contact Added!" << std::endl;
+	if (!get_variable(nickname, "Enter Nickname: ", ERROR_EMPTY_STRING)) {
+		return ;
+	}
+	do {
+		if (!get_variable(phone_number, "Enter Phone Number: ", ERROR_EMPTY_STRING)) {
+			return ;
+		}
+		if (!is_valid_phone_number(phone_number)) {
+			std::cout << ERROR_WRONG_NUMBER << std::endl;
+		}
+	} while  (!is_valid_phone_number(phone_number));
+
+	if (!get_variable(darkest_secret, "Enter Darkest Secret...: ", ERROR_EMPTY_STRING)) {
+		return ;
+	}
+	this->_contacts[index] = Contact(first_name, last_name, nickname,
+						phone_number, darkest_secret, true); 
 }

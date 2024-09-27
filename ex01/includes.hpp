@@ -3,6 +3,10 @@
 
 # include "PhoneBook.hpp"
 
+# define ERROR_EMPTY_STRING "Too bad :_). No empty strings allowed"
+# define ERROR_WRONG_NUMBER "TOO BAD! Wrong number! Try again. (Only digits are allowed)"
+# define ERROR_GETLINE "Get line failed in get_variable!"
+
 void	handle_main_loop(PhoneBook phone_book);
 
 #endif //EX01_HPP
