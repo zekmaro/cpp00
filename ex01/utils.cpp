@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phonebook.cpp                                      :+:      :+:    :+:   */
+/*   utils.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 13:54:41 by anarama           #+#    #+#             */
-/*   Updated: 2024/09/20 13:54:53 by anarama          ###   ########.fr       */
+/*   Updated: 2024/09/27 21:53:41 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	handle_main_loop(PhoneBook phone_book)
 	std::string	command;
 	int			next_index;
 
-	phone_book.set_next_index(0);
+	phone_book.setNextIndex(0);
 	while (true)
 	{
 		if (!std::cin.eof())
@@ -34,9 +34,9 @@ void	handle_main_loop(PhoneBook phone_book)
 			break ;
 		}
 		else if (command == "ADD") {
-			next_index = phone_book.get_next_index();
-			phone_book.add_contact(next_index % 8);
-			phone_book.set_next_index((next_index + 1) % 8);
+			next_index = phone_book.getNextIndex();
+			phone_book.addContact(next_index % 8);
+			phone_book.setNextIndex((next_index + 1) % 8);
 		}
 		else if (command == "SEARCH") {
 			phone_book.search();

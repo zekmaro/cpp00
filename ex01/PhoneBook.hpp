@@ -10,11 +10,15 @@ class PhoneBook
 		int		_index;
 	public:
 
-		Contact get_contact(int index) const;
-		void	add_contact(int index);
+		Contact getContact(int index) const;
+		void	addContact(int index);
 		void	search();
-		void	set_next_index(int value);
-		int		get_next_index() const;
+		void	setNextIndex(int value);
+		int		getNextIndex() const;
+		void	checkFirstContactEmpty( void );
+		void	displayFullContacts( void );
+		int		getValidIndex( int min, int max, const std::string& prompt, const std::string& error_message );
+		bool	isPhoneBookEmpty( void ) const;
 };
 
 #endif //PHONEBOOK_HPP
