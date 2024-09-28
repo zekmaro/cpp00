@@ -6,7 +6,7 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 20:08:48 by anarama           #+#    #+#             */
-/*   Updated: 2024/09/28 20:13:39 by anarama          ###   ########.fr       */
+/*   Updated: 2024/09/28 21:39:55 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,17 @@ class PhoneBook
 	private:
 		Contact	_contacts[8];
 		int		_index;
+		int		_taken;
 	public:
-		PhoneBook();
-		PhoneBook(int index);
-		~PhoneBook();
+		PhoneBook( void );
+		PhoneBook( int index );
+		~PhoneBook( void );
 
-		Contact getContact(int index) const;
+		Contact getContact( int index ) const;
 		void	addContact(int index);
-		void	search();
-		void	setIndex(int value);
-		int		getIndex() const;
+		void	search( void );
+		void	setIndex( int value );
+		int		getIndex( void ) const;
 
 		void	checkFirstContactEmpty( void );
 		void	displayFullContacts( void );

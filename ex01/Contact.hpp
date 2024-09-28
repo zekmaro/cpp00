@@ -6,7 +6,7 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 16:50:22 by anarama           #+#    #+#             */
-/*   Updated: 2024/09/27 21:14:20 by anarama          ###   ########.fr       */
+/*   Updated: 2024/09/28 21:59:28 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 
 # include <string>
 
-# define DEFAULT_FIRST_NAME "first_name"
-# define DEFAULT_LAST_NAME "last_name"
-# define DEFAULT_NICKNAME "nickname"
-# define DEFAULT_PHONE_NUMBER "phone_number"
-# define DEFAULT_DARKEST_SECRET "secret"
+# define DEFAULT_FIRST_NAME "Arthur"
+# define DEFAULT_LAST_NAME "Bied-Charreton"
+# define DEFAULT_NICKNAME "abied-ch"
+# define DEFAULT_PHONE_NUMBER "42069"
+# define DEFAULT_DARKEST_SECRET "My ***** is very small"
 # define DEFAULT_IS_FULL false
 
 class Contact

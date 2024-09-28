@@ -5,24 +5,30 @@
 #                                                     +:+ +:+         +:+      #
 #    By: anarama <anarama@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/09/28 20:22:50 by anarama           #+#    #+#              #
-#    Updated: 2024/09/28 20:22:51 by anarama          ###   ########.fr        #
+#    Created: 2024/09/28 20:23:54 by anarama           #+#    #+#              #
+#    Updated: 2024/09/28 20:28:10 by anarama          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		:= c++
 
-NAME	:= megaphone
+NAME	:= account
 
 CFALGS	:= -Wall -Wextra -Werror -std=c++98
 
-SRC		:= megaphone.cpp
+OBJDIR	:= obj
 
-OBJ		:= $(SRC:%.cpp=%.o)
+HEADERS	:=	Account.hpp
+
+SRC		:=	tests.cpp Account.cpp
+
+OBJ		:= $(SRC:%.cpp=$(OBJDIR)/%.o)
+
+$(shell mkdir -p $(OBJDIR))
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) $(HEADERS)
 	$(CC) $(OBJ) $(CFLAGS) -o $(NAME)
 
 clean:
@@ -32,5 +38,8 @@ fclean:
 	rm -f $(OBJ) $(NAME)
 
 re: fclean all
+
+$(OBJDIR)/%.o: %.cpp
+	$(CC) $(CFLAGS) -c $< -o $@
 
 .PHONY	: all clean fclean re

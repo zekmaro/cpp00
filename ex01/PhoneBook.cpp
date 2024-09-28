@@ -6,7 +6,7 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 17:35:21 by anarama           #+#    #+#             */
-/*   Updated: 2024/09/28 20:20:26 by anarama          ###   ########.fr       */
+/*   Updated: 2024/09/28 22:02:39 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,17 @@ PhoneBook::PhoneBook(int index) {
 	this->_index = index;
 }
 
-PhoneBook::~PhoneBook() {
-	
-}
+PhoneBook::~PhoneBook() {}
 
-Contact PhoneBook::getContact(int index) const
-{
+Contact PhoneBook::getContact(int index) const {
 	return (this->_contacts[index]);
 }
 
-int PhoneBook::getIndex() const
-{
+int PhoneBook::getIndex() const {
 	return (this->_index);
 }
 
-void PhoneBook::setIndex(int value)
-{
+void PhoneBook::setIndex(int value) {
 	this->_index = value;
 }
 
@@ -103,21 +98,16 @@ int PhoneBook::getValidIndexInput(int min, int max, const std::string& prompt,
 void	PhoneBook::search()
 {
 	int min = 0;
-	int max = 0;
 	int index_to_full_display = 0;
 
 	if (isPhoneBookEmpty()) {
 		return ;
 	}
+
 	displayFullContacts();
-	for (int i = 0; i < 8; i++)
-	{
-		if (this->_contacts[i].getIsFull() == true)
-			max++;
-	}
-	std::cout << "Max index: " << max << std::endl;
-	index_to_full_display = getValidIndexInput(min, max - 1, "Enter Index Of The Entry To Display: ",
-						"Too bad. Incorrect index! (only digits from 0 to 7)");
+
+	std::cout << "Max index: " << _taken << std::endl;
+	index_to_full_display = getValidIndexInput(min, _taken - 1, "Enter Index Of The Entry To Display: ", "Too bad. Incorrect index! (only digits from 0 to 7)");
 	if (index_to_full_display == -1) {
 		return ;
 	}
@@ -173,18 +163,17 @@ void	PhoneBook::addContact(int index) {
 	if (!get_contact_input(last_name, "Enter Last Name: ", ERROR_EMPTY_STRING)) return ;
 	if (!get_contact_input(nickname, "Enter Nickname: ", ERROR_EMPTY_STRING)) return ;
 	while (true) {
-		if (!get_contact_input(phone_number, "Enter Phone Number: ",
-					ERROR_EMPTY_STRING)) return ;
+		if (!get_contact_input(phone_number, "Enter Phone Number: ", ERROR_EMPTY_STRING)) return ;
+		
 		if (is_valid_phone_number(phone_number)) {
 			break ;
-		}
-		else {
+		} else {
 			std::cout << ERROR_WRONG_NUMBER << std::endl;
 			phone_number = "";
 		}
 	}
-	if (!get_contact_input(darkest_secret, "Enter Darkest Secret...: ",
-							ERROR_EMPTY_STRING)) return ;
-	this->_contacts[index] = Contact(first_name, last_name, nickname,
-						phone_number, darkest_secret, true); 
+	if (!get_contact_input(darkest_secret, "Enter Darkest Secret...: ", ERROR_EMPTY_STRING)) return ;
+	this->_contacts[index] = Contact(first_name, last_name, nickname, phone_number, darkest_secret, true);
+	
+	if (_taken < 8) _taken++;
 }

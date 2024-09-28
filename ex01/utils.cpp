@@ -6,7 +6,7 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 13:54:41 by anarama           #+#    #+#             */
-/*   Updated: 2024/09/28 20:12:02 by anarama          ###   ########.fr       */
+/*   Updated: 2024/09/28 21:05:04 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ void	handle_main_loop(PhoneBook phone_book)
 
 	while (true)
 	{
-		if (!std::cin.eof())
-			std::cout << "Enter command (ADD/SEARCH/EXIT): ";
-		if (!std::getline(std::cin, command) || std::cin.eof()) {
+		if (!std::cin.eof()) {
+			std::cout << "Enter command (ADD/SEARCH/EXIT): ";	
+		}
+		std::getline(std::cin, command);
+		if (std::cin.eof() || std::cin.fail()) {
 			std::cout << "\nToo bad :( You pressed CTRL-D. Bye!" << std::endl;
 			break ;
 		}
