@@ -1,7 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/28 20:08:48 by anarama           #+#    #+#             */
+/*   Updated: 2024/09/28 20:13:39 by anarama          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHONEBOOK_HPP
 #define PHONEBOOK_HPP
 
-#include "Contact.hpp"
+# include "Contact.hpp"
+# include <pthread.h>
+
+# define DEFAULT_INDEX 0
 
 class PhoneBook
 {
@@ -9,15 +24,20 @@ class PhoneBook
 		Contact	_contacts[8];
 		int		_index;
 	public:
+		PhoneBook();
+		PhoneBook(int index);
+		~PhoneBook();
 
 		Contact getContact(int index) const;
 		void	addContact(int index);
 		void	search();
-		void	setNextIndex(int value);
-		int		getNextIndex() const;
+		void	setIndex(int value);
+		int		getIndex() const;
+
 		void	checkFirstContactEmpty( void );
 		void	displayFullContacts( void );
-		int		getValidIndex( int min, int max, const std::string& prompt, const std::string& error_message );
+		int		getValidIndexInput( int min, int max, const std::string& prompt,
+						const std::string& error_message );
 		bool	isPhoneBookEmpty( void ) const;
 };
 

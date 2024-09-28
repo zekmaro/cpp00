@@ -6,30 +6,41 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 17:35:21 by anarama           #+#    #+#             */
-/*   Updated: 2024/09/27 22:07:30 by anarama          ###   ########.fr       */
+/*   Updated: 2024/09/28 20:20:26 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cstddef>
 #include <iostream>
-#include <iterator>
 #include <string>
 
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
 #include "includes.hpp"
 
+PhoneBook::PhoneBook() {
+	this->_index = DEFAULT_INDEX;	
+}
+
+PhoneBook::PhoneBook(int index) {
+	this->_index = index;
+}
+
+PhoneBook::~PhoneBook() {
+	
+}
+
 Contact PhoneBook::getContact(int index) const
 {
 	return (this->_contacts[index]);
 }
 
-int PhoneBook::getNextIndex() const
+int PhoneBook::getIndex() const
 {
 	return (this->_index);
 }
 
-void PhoneBook::setNextIndex(int value)
+void PhoneBook::setIndex(int value)
 {
 	this->_index = value;
 }
@@ -52,13 +63,12 @@ void PhoneBook::displayFullContacts(void) {
 
 bool validate_getline(std::string &var) {
 	if (!std::getline(std::cin, var)) {
-		std::cout << ERROR_GETLINE << "in get_variable!" << std::endl;
         return false;
 	}
 	return true;
 }
 
-int PhoneBook::getValidIndex(int min, int max, const std::string& prompt,
+int PhoneBook::getValidIndexInput(int min, int max, const std::string& prompt,
 				const std::string& error_message) {
 	std::string input;
 
@@ -74,10 +84,7 @@ int PhoneBook::getValidIndex(int min, int max, const std::string& prompt,
 		try {
 			size_t index;
 			index = std::stoi(input, &index);
-			if (index != input.length()) {
-				std::cout << error_message << std::endl;
-			}
-			else if (index >= min && index <= max) {
+			if (index >= min && index <= max) {
 				return index;
 			}
 			else {
@@ -98,7 +105,6 @@ void	PhoneBook::search()
 	int min = 0;
 	int max = 0;
 	int index_to_full_display = 0;
-	int current_top_index;
 
 	if (isPhoneBookEmpty()) {
 		return ;
@@ -110,7 +116,7 @@ void	PhoneBook::search()
 			max++;
 	}
 	std::cout << "Max index: " << max << std::endl;
-	index_to_full_display = getValidIndex(min, max - 1, "Enter Index Of The Entry To Display: ",
+	index_to_full_display = getValidIndexInput(min, max - 1, "Enter Index Of The Entry To Display: ",
 						"Too bad. Incorrect index! (only digits from 0 to 7)");
 	if (index_to_full_display == -1) {
 		return ;
