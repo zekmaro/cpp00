@@ -1,5 +1,0 @@
-1. Implement single setters and getters (done)
-2. Use getline instead of cin (done)
-3. Test and handle edge cases (in progress)
-4. Add 42 headers
-5. Fix that going over 8 starts putting new contacts on 1st index not 0s
