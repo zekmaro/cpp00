@@ -6,7 +6,7 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 17:35:21 by anarama           #+#    #+#             */
-/*   Updated: 2024/09/28 22:02:39 by anarama          ###   ########.fr       */
+/*   Updated: 2024/09/29 14:57:36 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 PhoneBook::PhoneBook() {
 	this->_index = DEFAULT_INDEX;	
+	this->_taken = DEFAULT_INDEX;
 }
 
 PhoneBook::PhoneBook(int index) {
@@ -63,6 +64,19 @@ bool validate_getline(std::string &var) {
 	return true;
 }
 
+bool	is_valid_phone_number(std::string number)
+{
+	if (number.empty()) {
+		return false;
+	}
+	for (int i = 0; i < number.length(); i++)
+	{
+		if (!std::isdigit(number[i]))
+			return false;
+	}
+	return true;
+}
+
 int PhoneBook::getValidIndexInput(int min, int max, const std::string& prompt,
 				const std::string& error_message) {
 	std::string input;
@@ -79,7 +93,10 @@ int PhoneBook::getValidIndexInput(int min, int max, const std::string& prompt,
 		try {
 			size_t index;
 			index = std::stoi(input, &index);
-			if (index >= min && index <= max) {
+			if (!is_valid_phone_number(input)) {
+				std::cout << error_message << std::endl;
+			}
+			else if (index >= min && index <= max) {
 				return index;
 			}
 			else {
@@ -107,24 +124,11 @@ void	PhoneBook::search()
 	displayFullContacts();
 
 	std::cout << "Max index: " << _taken << std::endl;
-	index_to_full_display = getValidIndexInput(min, _taken - 1, "Enter Index Of The Entry To Display: ", "Too bad. Incorrect index! (only digits from 0 to 7)");
+	index_to_full_display = getValidIndexInput(min, _taken - 1, "Enter Index Of The Entry To Display: ", "Too bad. Incorrect index! (only digits from 0 to 7, no spaces)");
 	if (index_to_full_display == -1) {
 		return ;
 	}
 	this->_contacts[index_to_full_display].displayContactFull();
-}
-
-bool	is_valid_phone_number(std::string number)
-{
-	if (number.empty()) {
-		return false;
-	}
-	for (int i = 0; i < number.length(); i++)
-	{
-		if (!std::isdigit(number[i]))
-			return false;
-	}
-	return true;
 }
 
 bool display_message_and_save_var(std::string &var, const std::string &display_message,
