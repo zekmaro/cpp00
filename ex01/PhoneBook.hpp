@@ -6,7 +6,7 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 20:08:48 by anarama           #+#    #+#             */
-/*   Updated: 2024/09/28 21:39:55 by anarama          ###   ########.fr       */
+/*   Updated: 2024/09/30 13:03:38 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #define PHONEBOOK_HPP
 
 # include "Contact.hpp"
-# include <pthread.h>
 
 # define DEFAULT_INDEX 0
 
@@ -24,6 +23,7 @@ class PhoneBook
 		Contact	_contacts[8];
 		int		_index;
 		int		_taken;
+
 	public:
 		PhoneBook( void );
 		PhoneBook( int index );

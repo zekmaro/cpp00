@@ -6,7 +6,7 @@
 #    By: anarama <anarama@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/28 20:23:54 by anarama           #+#    #+#              #
-#    Updated: 2024/09/28 20:28:10 by anarama          ###   ########.fr        #
+#    Updated: 2024/09/30 13:35:58 by anarama          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC		:= c++
 
 NAME	:= account
 
-CFALGS	:= -Wall -Wextra -Werror -std=c++98
+CFLAGS	:= -Wall -Wextra -Werror -std=c++98 -g
 
 OBJDIR	:= obj
 

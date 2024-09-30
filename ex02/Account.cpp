@@ -6,14 +6,18 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 19:46:14 by anarama           #+#    #+#             */
-/*   Updated: 2024/09/29 15:32:28 by anarama          ###   ########.fr       */
+/*   Updated: 2024/09/30 13:37:00 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <iomanip>
 
 #include "Account.hpp"
+
+# define BUFFER_SIZE 16
+# define DEFAULT_AMOUNT 0
+# define DEFAULT_NBDEPOSITIS 0
+# define DEFAULT_NBWITHDRAWALS 0
 
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
@@ -36,12 +40,17 @@ int	Account::getNbWithdrawals( void ) {
 	return (_totalNbWithdrawals);
 }
 
-void Account::_displayTimestamp( void ) {
-	time_t	now;
 
-	now = time(NULL);
-	std::cout << std::put_time(localtime(&now), "[%Y%m%d_%H%M%S] ");
+void Account::_displayTimestamp(void)
+{
+	time_t		current_time;
+	char 		buffer[BUFFER_SIZE];
+
+	time(&current_time);
+	strftime(buffer, BUFFER_SIZE, "%G%m%e_%H%M%S", localtime(&current_time));
+	std::cout << "[" << buffer << "] ";
 }
+
 
 void	Account::makeDeposit( int deposit ) {
 	this->_nbDeposits += 1;
@@ -86,9 +95,7 @@ void	Account::displayAccountsInfos( void )
 			<< std::endl;
 }
 
-Account::Account( int initial_deposit ) {
-	this->_amount = initial_deposit;
-	this->_accountIndex = _nbAccounts;
+Account::Account( int initial_deposit ) :  _accountIndex(_nbAccounts), _amount(initial_deposit), _nbDeposits(DEFAULT_NBDEPOSITIS), _nbWithdrawals(DEFAULT_NBDEPOSITIS){
 	_totalAmount += initial_deposit;
 	_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex << ";amount:"
@@ -96,8 +103,7 @@ Account::Account( int initial_deposit ) {
 	_nbAccounts++;
 }
 
-Account::Account( void ) {
-}
+Account::Account( void ) : _amount(DEFAULT_AMOUNT), _nbDeposits(DEFAULT_NBDEPOSITIS), _nbWithdrawals(DEFAULT_NBDEPOSITIS) {}
 
 Account::~Account( void ) {
 	_displayTimestamp();

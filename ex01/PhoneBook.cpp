@@ -6,11 +6,10 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 17:35:21 by anarama           #+#    #+#             */
-/*   Updated: 2024/09/29 14:57:36 by anarama          ###   ########.fr       */
+/*   Updated: 2024/09/30 14:41:21 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cstddef>
 #include <iostream>
 #include <string>
 
@@ -18,30 +17,25 @@
 #include "Contact.hpp"
 #include "includes.hpp"
 
-PhoneBook::PhoneBook() {
-	this->_index = DEFAULT_INDEX;	
-	this->_taken = DEFAULT_INDEX;
+PhoneBook::PhoneBook( void ) : _index(DEFAULT_INDEX), _taken(DEFAULT_INDEX) {}
+
+PhoneBook::PhoneBook( int index ) : _index(index) {}
+
+PhoneBook::~PhoneBook( void ) {}
+
+Contact PhoneBook::getContact( int index ) const {
+	return this->_contacts[index];
 }
 
-PhoneBook::PhoneBook(int index) {
-	this->_index = index;
+int PhoneBook::getIndex( void ) const {
+	return this->_index;
 }
 
-PhoneBook::~PhoneBook() {}
-
-Contact PhoneBook::getContact(int index) const {
-	return (this->_contacts[index]);
-}
-
-int PhoneBook::getIndex() const {
-	return (this->_index);
-}
-
-void PhoneBook::setIndex(int value) {
+void PhoneBook::setIndex( int value ) {
 	this->_index = value;
 }
 
-bool PhoneBook::isPhoneBookEmpty() const {
+bool PhoneBook::isPhoneBookEmpty( void ) const {
     if (!_contacts[0].getIsFull()) {
         std::cout << "Too bad. Nothing to search for. Phonebook is empty" << std::endl;
         return true;
@@ -49,7 +43,7 @@ bool PhoneBook::isPhoneBookEmpty() const {
     return false;
 }
 
-void PhoneBook::displayFullContacts(void) {
+void PhoneBook::displayFullContacts( void ) {
 	for (int i = 0; i < 8; i++)
 	{
 		if (this->_contacts[i].getIsFull() == true)
@@ -69,7 +63,7 @@ bool	is_valid_phone_number(std::string number)
 	if (number.empty()) {
 		return false;
 	}
-	for (int i = 0; i < number.length(); i++)
+	for (size_t i = 0; i < number.length(); i++)
 	{
 		if (!std::isdigit(number[i]))
 			return false;
@@ -91,13 +85,11 @@ int PhoneBook::getValidIndexInput(int min, int max, const std::string& prompt,
 			continue ;
 		}
 		try {
-			size_t index;
-			index = std::stoi(input, &index);
-			if (!is_valid_phone_number(input)) {
-				std::cout << error_message << std::endl;
+			if (input.length() > 1) {
+				std::cout << error_message << std::endl;	
 			}
-			else if (index >= min && index <= max) {
-				return index;
+			else if (input[0] - '0' >= min && input[0] - '0' <= max) {
+				return input[0] - '0';
 			}
 			else {
 				std::cout << error_message << std::endl;
@@ -123,16 +115,15 @@ void	PhoneBook::search()
 
 	displayFullContacts();
 
-	std::cout << "Max index: " << _taken << std::endl;
 	index_to_full_display = getValidIndexInput(min, _taken - 1, "Enter Index Of The Entry To Display: ", "Too bad. Incorrect index! (only digits from 0 to 7, no spaces)");
 	if (index_to_full_display == -1) {
 		return ;
 	}
+	
 	this->_contacts[index_to_full_display].displayContactFull();
 }
 
-bool display_message_and_save_var(std::string &var, const std::string &display_message,
-				const std::string &error_message) {
+bool display_message_and_save_var(std::string &var, const std::string &display_message) {
 	std::cout << display_message;
 	if (!validate_getline(var)) {
 		return false;
@@ -148,7 +139,7 @@ bool	get_contact_input(std::string &var, const std::string &display_message,
 		if (!first_iteration) {	
 			std::cout << error_message << std::endl;
 		}
-		if (!display_message_and_save_var(var, display_message, error_message)) {
+		if (!display_message_and_save_var(var, display_message)) {
 			return false;
 		}
 		first_iteration = false;

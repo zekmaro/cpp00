@@ -6,7 +6,7 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 15:40:55 by anarama           #+#    #+#             */
-/*   Updated: 2024/09/18 15:50:58 by anarama          ###   ########.fr       */
+/*   Updated: 2024/09/30 12:59:28 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,26 @@
 int main(int argc, char **argv)
 {
 	int i;
+	int j;
 
-	if (argc != 2)
-	{
-		std::cout << "Wrong amount of args" << std::endl;
-		return (1);
+	if (argc == 1) {
+		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
+		return 0;
 	}
-	i = 0;
-	while (argv[1][i])
-	{
-		argv[1][i] = toupper(argv[1][i]);
+	i = 1;
+	while (argv[i]) {
+		j = 0;
+		while (argv[i][j]) {
+			argv[i][j] = toupper(argv[i][j]);
+			j++;
+		}
 		i++;
 	}
-	std::cout << argv[1] << std::endl;
-	return (0);
+	i = 1;
+	while (argv[i]) {
+		std::cout << argv[i];
+		i++;
+	}
+	std::cout << std::endl;
+	return 0;
 }

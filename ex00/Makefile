@@ -6,7 +6,7 @@
 #    By: anarama <anarama@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/28 20:22:50 by anarama           #+#    #+#              #
-#    Updated: 2024/09/28 20:22:51 by anarama          ###   ########.fr        #
+#    Updated: 2024/09/30 14:41:51 by anarama          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC		:= c++
 
 NAME	:= megaphone
 
-CFALGS	:= -Wall -Wextra -Werror -std=c++98
+CFLAGS	:= -Wall -Wextra -Werror -std=c++98
 
 SRC		:= megaphone.cpp
 
