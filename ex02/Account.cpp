@@ -6,7 +6,7 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 19:46:14 by anarama           #+#    #+#             */
-/*   Updated: 2024/09/30 14:53:11 by anarama          ###   ########.fr       */
+/*   Updated: 2024/09/30 15:46:40 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	Account::displayAccountsInfos( void )
 			<< std::endl;
 }
 
-Account::Account( int initial_deposit ) :  _accountIndex(_nbAccounts), _amount(initial_deposit), _nbDeposits(DEFAULT_NBDEPOSITIS), _nbWithdrawals(DEFAULT_NBDEPOSITIS){
+Account::Account( int initial_deposit ) :  _accountIndex(_nbAccounts), _amount(initial_deposit), _nbDeposits(DEFAULT_NBDEPOSITIS), _nbWithdrawals(DEFAULT_NBDEPOSITIS) {
 	_totalAmount += initial_deposit;
 	_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex << ";amount:"

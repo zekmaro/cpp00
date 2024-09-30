@@ -6,7 +6,7 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 16:50:22 by anarama           #+#    #+#             */
-/*   Updated: 2024/09/30 13:49:29 by anarama          ###   ########.fr       */
+/*   Updated: 2024/09/30 15:35:26 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,10 @@ class Contact
 		void		setDarkestSecret( std::string darkest_secret );
 		void		setIsFull( bool state );
 
-		void		displayContactShort( void );
+		void		displayContactShort( int index );
+		std::string truncateField(const std::string& field);
 		void		displayContactFull( void );
+		void		displayHeader( void );
 };
 
 #endif //CONTACT_HPP

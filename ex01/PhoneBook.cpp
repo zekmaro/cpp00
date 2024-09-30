@@ -6,11 +6,12 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 17:35:21 by anarama           #+#    #+#             */
-/*   Updated: 2024/09/30 14:41:21 by anarama          ###   ########.fr       */
+/*   Updated: 2024/09/30 15:41:29 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <iomanip>
 #include <string>
 
 #include "PhoneBook.hpp"
@@ -35,6 +36,14 @@ void PhoneBook::setIndex( int value ) {
 	this->_index = value;
 }
 
+void displayHeader( void ) {
+    std::cout << std::setw(10) << "Index" << '|'
+              << std::setw(10) << "First Name" << '|'
+              << std::setw(10) << "Last Name" << '|'
+              << std::setw(10) << "Nickname" << std::endl;
+    std::cout << "--------------------------------------------" << std::endl;
+}
+
 bool PhoneBook::isPhoneBookEmpty( void ) const {
     if (!_contacts[0].getIsFull()) {
         std::cout << "Too bad. Nothing to search for. Phonebook is empty" << std::endl;
@@ -44,10 +53,12 @@ bool PhoneBook::isPhoneBookEmpty( void ) const {
 }
 
 void PhoneBook::displayFullContacts( void ) {
+	displayHeader();
 	for (int i = 0; i < 8; i++)
 	{
-		if (this->_contacts[i].getIsFull() == true)
-			this->_contacts[i].displayContactShort();
+		if (this->_contacts[i].getIsFull() == true) {
+			this->_contacts[i].displayContactShort(i);
+		}
 	}
 }
 
