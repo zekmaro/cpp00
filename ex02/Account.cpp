@@ -6,7 +6,7 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 19:46:14 by anarama           #+#    #+#             */
-/*   Updated: 2024/09/30 15:46:40 by anarama          ###   ########.fr       */
+/*   Updated: 2024/10/02 14:17:08 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,19 @@ int Account::_totalNbDeposits = 0;
 int Account::_totalNbWithdrawals = 0;
 
 int	Account::getNbAccounts( void ) {
-	return (_nbAccounts);
+	return _nbAccounts;
 }
 
 int	Account::getTotalAmount( void ){
-	return (_totalAmount);
+	return _totalAmount;
 }
 
 int	Account::getNbDeposits( void ) {
-	return (_totalNbDeposits);
+	return _totalNbDeposits;
 }
 
 int	Account::getNbWithdrawals( void ) {
-	return (_totalNbWithdrawals);
+	return _totalNbWithdrawals;
 }
 
 void Account::_displayTimestamp(void)
